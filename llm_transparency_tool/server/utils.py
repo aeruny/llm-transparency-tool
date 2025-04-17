@@ -13,6 +13,7 @@ import torch
 import transformers
 
 import llm_transparency_tool.routes.graph
+from llm_transparency_tool.models.layerskip_model import LayerSkipLlama
 from llm_transparency_tool.models.tlens_model import TransformerLensTransparentLlm
 from llm_transparency_tool.models.transparent_llm import TransparentLlm
 
@@ -56,6 +57,9 @@ def load_model(
     can be used later to identify if the model has changed.
     """
     assert _device in possible_devices()
+
+    if "layerskip" in model_name:
+        return LayerSkipLlama(model_path=_model_path or model_name)
 
     causal_lm = None
     tokenizer = None
@@ -108,7 +112,7 @@ def run_model_with_session_caching(
     }
 )
 def get_contribution_graph(
-    model: TransparentLlm,  # TODO bug here
+    _model: TransparentLlm,  # TODO bug here
     model_key: str,
     tokens: List[str],
     threshold: float,
@@ -118,7 +122,7 @@ def get_contribution_graph(
     hashed, hence the `_` in the beginning.
     """
     return llm_transparency_tool.routes.graph.build_full_graph(
-        model,
+        _model,
         B0,
         threshold,
     )

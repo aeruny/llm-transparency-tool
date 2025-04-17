@@ -73,10 +73,10 @@ def cached_build_paths_to_predictions(
     }
 )
 def cached_run_inference_and_populate_state(
-    stateless_model,
+        _stateless_model,
     sentences,
 ):
-    stateful_model = stateless_model.copy()
+    stateful_model = _stateless_model.copy()
     stateful_model.run(sentences)
     return stateful_model
 

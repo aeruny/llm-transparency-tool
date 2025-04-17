@@ -4,7 +4,8 @@
     "debug": true,
     "models": {
         "": null,
-
+        "facebook/layerskip-llama2-7B": null,
+        "meta-llama/Llama-2-7b-hf": null,
         "meta-llama/Meta-Llama-3-8B": null,
         "meta-llama/Meta-Llama-3-70B": null,
         "meta-llama/Meta-Llama-3-8B-Instruct": null,
